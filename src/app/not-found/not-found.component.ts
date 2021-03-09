@@ -5,10 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './not-found.component.html',
 })
 export class NotFoundComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

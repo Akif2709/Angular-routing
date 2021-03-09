@@ -1,16 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../http-service.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
+  styles: [
+    `
+      .box-shadow:hover {
+        background-color: #c0c0c0;
+      }
+    `,
+  ],
 })
 export class UsersComponent implements OnInit {
   users;
-  constructor(private httpService:HttpService) { }
+  selectedUser;
+  constructor(
+    private httpService: HttpService,
+    private readonly route: Router,
+    private readonly activatedRoute: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
-    this.httpService.getUsers().subscribe(users => this.users = users)
+    this.httpService.getUsers().subscribe(users => (this.users = users));
   }
 
+  showUserDetails(id) {
+    this.selectedUser = id;
+    this.route.navigate([id], { relativeTo: this.activatedRoute });
+  }
 }

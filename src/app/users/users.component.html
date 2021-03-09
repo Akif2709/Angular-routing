@@ -1,5 +1,22 @@
-<ng-container *ngIf="users">
-    <app-user *ngFor="let user of users" [user]="user"></app-user>
-</ng-container>
+
+<div class="container-xl d-column mt-5">
+    <h5 class="mx-2 mb-4" >Click on a user to see details. (It uses child route)</h5>
+    <div class="row">
+
+        <div class="col-4" *ngIf="users"> 
+            <h5 *ngFor="let user of users">   
+                <button
+                 (click)="showUserDetails(user.id)" 
+                 class="btn m-1 card shadow box-shadow w-100"
+                 [ngClass]="{'bg-secondary':selectedUser === user.id, 'text-white':selectedUser === user.id}"
+                 >{{user?.name}}</button>
+            </h5>
+        </div>
+        <div class="col-8">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
 
 
