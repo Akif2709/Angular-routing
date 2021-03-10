@@ -1,1 +1,28 @@
-<p>login works!</p>;
+<ng-container *ngIf="users$ | async as users">
+    <div class="container d-flex mt-3" *ngIf="!((loginUser$ | async)?.name) && !loading; else welcome">
+        <h3 class="m-auto w-100">Select a user to LOG IN with</h3>
+        <ul class="list-group col-4 m-auto">
+            <li class="list-group-item p-0 list-group-item-action" *ngFor="let user of users"> 
+                <button class="btn w-100" (click)="login(user)">{{user.name}}</button>
+            </li>
+        </ul>
+    </div>
+    <ng-template #welcome>
+        <div class="d-flex flex-column mt-5 pt-5" style="min-height:500px;" *ngIf="!loading; else spinner;">
+            <h3 class="mx-auto">You logged in as <strong>{{(loginUser$ | async)?.name}}</strong></h3>
+            <div class="mx-auto">
+                <svg  xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
+                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                </svg>
+            </div>
+            <button class=" mt-5 col-3 btn btn-secondary m-auto" (click)="logout()">Log Out</button>
+        </div>
+        <ng-template #spinner >
+            <div class="d-flex justify-content-center min-height-300">
+                <div class="spinner-border m-auto" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+        </ng-template>
+    </ng-template>
+</ng-container>

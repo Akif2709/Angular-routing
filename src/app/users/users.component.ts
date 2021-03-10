@@ -28,6 +28,5 @@ export class UsersComponent implements OnInit {
 
   showUserDetails(id) {
     this.selectedUser = id;
-    this.route.navigate([id], { relativeTo: this.activatedRoute });
   }
 }

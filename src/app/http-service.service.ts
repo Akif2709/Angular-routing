@@ -24,7 +24,12 @@ export class HttpService {
     return this.http.get(`https://jsonplaceholder.typicode.com/users/${userId}/todos`);
   }
 
-  getPostsodUser(userId) {
+  getPostsOfUser(userId) {
     return this.http.get(`https://jsonplaceholder.typicode.com/users/${userId}/posts`);
   }
+  getMyTodos(id?) {
+    return this.http.get(`https://jsonplaceholder.typicode.com/users/${id || 2}/todos`).pipe(map((todos:any[]) => todos.slice(0,5).map(todo =>({...todo,  title: todo.title?.substring(0,10)}))));
+  }
+
+
 }

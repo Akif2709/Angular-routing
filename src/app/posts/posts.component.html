@@ -1,1 +1,22 @@
-<p>posts works!</p>;
+<div class="container-md ">
+
+    <div class="input-group d-flex flex-column my-4">
+        <form #addPostForm="ngForm" (ngSubmit)="addPost(addPostForm.value)">
+            <div class="input-group-prepend m-2">
+                <span class="input-group-text" id="basic-addon1">Title</span>
+                <input type="text" class="form-control" placeholder="..." name="title" ngModel autocomplete="off">
+            </div>
+            <div class="input-group-prepend m-2">
+                <span class="input-group-text">Your post</span>
+                <textarea class="form-control" name="body" ngModel></textarea>
+            </div>
+            <button class="btn btn-primary m-2" style="max-width: 200px;" type="submit">
+                {{loginUser?.id ? "Share post" : "Login to post"}} 
+            </button>
+        </form>
+    </div>
+    <div *ngIf="posts$ | async as posts">
+       <app-post *ngFor="let post of posts" [post]="post"></app-post>
+    </div>
+    
+</div>

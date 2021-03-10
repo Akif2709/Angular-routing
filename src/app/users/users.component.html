@@ -7,8 +7,10 @@
             <h5 *ngFor="let user of users">   
                 <button
                  (click)="showUserDetails(user.id)" 
+                 [routerLink]="[user?.id]"
+                 [replaceUrl]="true"
+                 [routerLinkActive]="['bg-secondary', 'text-white']"
                  class="btn m-1 card shadow box-shadow w-100"
-                 [ngClass]="{'bg-secondary':selectedUser === user.id, 'text-white':selectedUser === user.id}"
                  >{{user?.name}}</button>
             </h5>
         </div>
