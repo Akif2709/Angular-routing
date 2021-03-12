@@ -16,16 +16,13 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   loginUser$;
   destroy$ = new Subject()
 
-  constructor(private postsService:PostsService, private activatedRoute:ActivatedRoute, private authService:AuthService, private router:Router) { }
+  constructor(private postsService:PostsService, private route:ActivatedRoute, private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
-    const {paramMap, queryParams} = this.activatedRoute.snapshot
-    const postId = paramMap.get('id')
-    const postUserName = queryParams.userName;
-
-    this.post$ = this.postsService.getPostById(postId).pipe(map(post =>( {...post, userName: postUserName})))
-    this.comments$ = this.postsService.getCommentsById(postId)
-    this.loginUser$ = this.authService.loginUser$.pipe(tap(console.log));
+    this.loginUser$ = this.authService.loginUser$;
+    const {post, comments} = this.route.snapshot.data['postComments']
+    this.post$ = post
+    this.comments$ = comments
   }
 
   deletePost(id){

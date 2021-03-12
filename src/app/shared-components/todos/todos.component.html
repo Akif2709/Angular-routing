@@ -1,5 +1,5 @@
 <div class="container my-5"  >
-    <div class="row" *ngIf="todos; else notFound">
+    <div class="row" *ngIf="(todos$ | async) as todos; else notFound">
         <div class="col-md-12">
             <div class="p-1">
                 <div class="todo-list">

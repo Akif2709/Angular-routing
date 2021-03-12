@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { UsersComponent } from './users.component';
 import { SpinnerComponent } from '../shared-components/spinner/spinner.component';
+import { SharedModule } from '../shared-components/shared.module';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [UserComponent, UsersComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  entryComponents:[],
   exports:[]
 })
 export class UsersModule {}

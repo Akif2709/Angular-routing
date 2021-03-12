@@ -16,11 +16,7 @@ import { HttpService } from '../http-service.service';
 export class UsersComponent implements OnInit {
   users;
   selectedUser;
-  constructor(
-    private httpService: HttpService,
-    private readonly route: Router,
-    private readonly activatedRoute: ActivatedRoute,
-  ) {}
+  constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {
     this.httpService.getUsers().subscribe(users => (this.users = users));

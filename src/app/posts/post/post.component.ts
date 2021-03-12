@@ -10,6 +10,6 @@ export class PostComponent {
   constructor(private route:Router, private activateRoute:ActivatedRoute){}
 
   navigateToDetails(){
-    this.route.navigate([this.post.id], {relativeTo:this.activateRoute, queryParams:{userName:this.post.userName}})
+    this.route.navigate([this.post.id,{userName:this.post.userName}],{relativeTo:this.activateRoute})
   }
 }

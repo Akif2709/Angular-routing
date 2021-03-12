@@ -13,20 +13,17 @@ import { TodosComponent } from './shared-components/todos/todos.component';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './shared-components/spinner/spinner.component';
 import { UsersModule } from './users/users.module';
+import { SharedModule } from './shared-components/shared.module';
 
 const components = [
   AppComponent,
-  NavbarComponent,
-  NotFoundComponent,
-  SpinnerComponent,
-  LoginComponent,
   WelcomeComponent,
-  TodosComponent,
+ 
 ];
 
 @NgModule({
   declarations: [...components],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, FormsModule, SharedModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
   exports: [],

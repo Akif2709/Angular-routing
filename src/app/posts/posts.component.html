@@ -4,18 +4,24 @@
         <form #addPostForm="ngForm" (ngSubmit)="addPost(addPostForm.value)">
             <div class="input-group-prepend m-2">
                 <span class="input-group-text" id="basic-addon1">Title</span>
-                <input type="text" class="form-control" placeholder="..." name="title" ngModel autocomplete="off">
+                <input
+                 type="text" 
+                 class="form-control" 
+                 placeholder="..." 
+                 name="title"    d
+                 [(ngModel)]="form.title" 
+                 autocomplete="off">
             </div>
             <div class="input-group-prepend m-2">
                 <span class="input-group-text">Your post</span>
-                <textarea class="form-control" name="body" ngModel></textarea>
+                <textarea class="form-control" name="body" [(ngModel)]="form.body"></textarea>
             </div>
             <button class="btn btn-primary m-2" style="max-width: 200px;" type="submit">
-                {{loginUser?.id ? "Share post" : "Login to post"}} 
+                {{loginUser?.id ? "Share" : "Login before share"}} 
             </button>
         </form>
     </div>
-    <div *ngIf="posts$ | async as posts">
+    <div *ngIf="posts">
        <app-post *ngFor="let post of posts" [post]="post"></app-post>
     </div>
     

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
@@ -11,34 +11,54 @@ import { PostsService } from './posts.service';
   templateUrl: './posts.component.html',
 })
 export class PostsComponent implements OnInit, OnDestroy {
-  posts$;
+  posts;
   subscription$ = new Subject();
   loginUser;
+  form = {
+    title: '',
+    body: '',
+  };
 
-  constructor(private postsService: PostsService, private authService:AuthService, private router:Router) {}
+  constructor(
+    private postsService: PostsService,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
-    this.posts$ = this.postsService.getAllPosts();
-    this.loginUser = this.authService.loginUser$.getValue()
+    this.posts = this.route.snapshot.data['posts'];
+    this.loginUser = this.authService.loginUser$.getValue();
+
+    const { title, body } = this.route.snapshot.queryParams;
+    this.patchFormValue(title, body);
   }
 
-  addPost(postBody) {
-    if(!this.loginUser){
-      this.router.navigate(["/login"])
-      return
+  addPost({ title, body }) {
+    if (!this.loginUser) {
+      this.router.navigate(['/login'], { queryParams: { title, body, returnPath: '/posts' } });
+      return;
     }
-    const body = {...postBody, id: new Date().getTime(), userId:this.loginUser?.id}
 
     this.postsService
-      .addPost(body)
+      .addPost({ title, body, id: new Date().getTime(), userId: this.loginUser?.id })
       .pipe(takeUntil(this.subscription$))
-      .subscribe(({body} : any) => {
-        this.posts$ = this.posts$.pipe(map((posts: any[]) => ([ body, ...posts ])));
+      .subscribe(({ body }: any) => {
+        this.posts = [{ userName: this.loginUser?.name, ...body }, ...this.posts];
       });
-  }
 
+    this.patchFormValue();
+  }
+  
   ngOnDestroy() {
     this.subscription$.next();
     this.subscription$.complete();
   }
+  
+    patchFormValue(title?, body?) {
+      this.form = {
+        title,
+        body,
+      };
+    }
 }

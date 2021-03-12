@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { mergeMap, switchMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/auth.service';
 import { HttpService } from '../../http-service.service';
 
 @Component({
@@ -8,12 +11,21 @@ import { HttpService } from '../../http-service.service';
   styleUrls:['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  todos;
+  todos$;
 
-  constructor(private service:HttpService, private router:Router) { }
-
+  constructor(private service:HttpService, private router:Router, private authService: AuthService) { }
+  
   ngOnInit(): void {
-    this.service.getMyTodos().subscribe(todos => this.todos = todos)
+    this.todos$ = this.authService.loginUser$.pipe(mergeMap((user)=>{
+      if(user){
+        
+        console.log(user?.id)
+        return this.service.getMyTodos(user?.id)
+      } else {
+        this.closeTab()
+        return of()
+      }
+    }))
   }
   closeTab(){
     this.router.navigate([{outlets:{ sidebar: null}}])

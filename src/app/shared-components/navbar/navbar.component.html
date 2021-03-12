@@ -21,6 +21,6 @@
         [routerLink]="['/login']" >
        {{ (loginUser$ | async)?.id ? "Log out" : "Login"}}
     </button>
-     <button class="btn my-2 my-sm-0 mr-5" [routerLink]="[{ outlets: { sidebar: ['todos'] } }]" >My Todos</button>
+     <button class="btn my-2 my-sm-0 mr-5" *ngIf="(loginUser$ | async)?.id" [routerLink]="[{ outlets: { sidebar: ['todos'] } }]" >My Todos</button>
     </div>
   </nav>

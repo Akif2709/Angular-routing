@@ -1,7 +1,7 @@
 
 <div>
 
-    <div class="card p-3"  *ngIf="user">
+    <div class="card p-3"  *ngIf="user && !loading;else spinner">
         <div class="d-flex flex-column">
             <h3 class="card-title  mx-auto mb-2">{{user?.name}}</h3>
             <p class="card-text mb-1">E-Mail: {{user?.email}}</p>
@@ -12,11 +12,8 @@
             <p *ngFor="let album of albums">{{album?.title}}</p>
         </div>    
     </div>
-    <div>
-        <h2>asdsadas</h2>
-        <app-spinner></app-spinner>
-        <h2>asdsadas</h2>
-    </div>
+  
     <ng-template #spinner>
+        <app-spinner></app-spinner>
     </ng-template>
 </div>
