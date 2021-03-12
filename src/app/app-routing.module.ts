@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { TodosComponent } from './todos/todos.component';
+import { LoginComponent } from './auth/login/login.component';
+import { NotFoundComponent } from './shared-components/not-found/not-found.component';
+import { TodosComponent } from './shared-components/todos/todos.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   { path: 'home', component: WelcomeComponent },
   { path: 'welcome', redirectTo: 'home', pathMatch: 'full' },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'login', component:LoginComponent },
+  { path: 'login', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
   { path: 'posts', loadChildren: () => import('./posts/posts.module').then(m => m.PostsModule) },
   {

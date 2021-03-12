@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
   user;
   userId;
   albums;
+  loading = false;
 
   constructor(private readonly activatedRoute: ActivatedRoute, private httpService: HttpService) {}
 
@@ -20,10 +21,12 @@ export class UserComponent implements OnInit {
       .pipe(
         switchMap(params => {
           this.userId = Number(params.get('id'));
+          this.loading = !!this.userId
           return combineLatest([this.httpService.getUser(this.userId), this.httpService.getAlbumsOfUser(this.userId)]);
         }),
       )
       .subscribe(([user, albums]) => {
+        this.loading = false;
         this.user = user;
         this.albums = albums;
       });

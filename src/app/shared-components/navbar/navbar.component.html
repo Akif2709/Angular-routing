@@ -15,7 +15,10 @@
   
       </ul>
       <h6 class="my-auto">{{ (loginUser$ | async)?.name}}</h6>
-     <button class="btn btn-outline-success my-2 my-sm-0 mr-5 ml-2" [routerLink]="['/login']" >
+     <button 
+        class="btn btn-outline-success my-2 my-sm-0 mr-5 ml-2" 
+        [ngClass]="(loginUser$ | async)?.id ? 'btn-outline-danger' : 'btn-outline-success'" 
+        [routerLink]="['/login']" >
        {{ (loginUser$ | async)?.id ? "Log out" : "Login"}}
     </button>
      <button class="btn my-2 my-sm-0 mr-5" [routerLink]="[{ outlets: { sidebar: ['todos'] } }]" >My Todos</button>

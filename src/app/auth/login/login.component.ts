@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { HttpService } from '../http-service.service';
-import { AuthService } from '../auth/auth.service';
+import { HttpService } from '../../http-service.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   users$;

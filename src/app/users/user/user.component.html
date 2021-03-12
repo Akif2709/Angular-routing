@@ -1,11 +1,22 @@
-<div class="card p-3">
-    <div class="d-flex flex-column" *ngIf="user">
-        <h3 class="card-title  mx-auto mb-2">{{user?.name}}</h3>
-        <p class="card-text mb-1">E-Mail: {{user?.email}}</p>
-        <p class="card-text"><small class="text-muted">{{user.address?.street}} {{user.address.suite}} {{user.address?.city}}</small></p>
-    </div>  
+
+<div>
+
+    <div class="card p-3"  *ngIf="user">
+        <div class="d-flex flex-column">
+            <h3 class="card-title  mx-auto mb-2">{{user?.name}}</h3>
+            <p class="card-text mb-1">E-Mail: {{user?.email}}</p>
+            <p class="card-text"><small class="text-muted">{{user.address?.street}} {{user.address.suite}} {{user.address?.city}}</small></p>
+        </div>  
+        <div>
+            <h4 class="mx-auto my-4">Albums</h4>
+            <p *ngFor="let album of albums">{{album?.title}}</p>
+        </div>    
+    </div>
     <div>
-        <h4 class="mx-auto my-4">Albums</h4>
-        <p *ngFor="let album of albums">{{album.title}}</p>
-    </div>    
+        <h2>asdsadas</h2>
+        <app-spinner></app-spinner>
+        <h2>asdsadas</h2>
+    </div>
+    <ng-template #spinner>
+    </ng-template>
 </div>

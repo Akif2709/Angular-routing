@@ -28,7 +28,7 @@ export class PostsComponent implements OnInit, OnDestroy {
       return
     }
     const body = {...postBody, id: new Date().getTime(), userId:this.loginUser?.id}
-    console.log(body)
+
     this.postsService
       .addPost(body)
       .pipe(takeUntil(this.subscription$))

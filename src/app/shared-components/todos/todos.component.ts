@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpService } from '../http-service.service';
+import { HttpService } from '../../http-service.service';
 
 @Component({
   selector: 'app-todos',
