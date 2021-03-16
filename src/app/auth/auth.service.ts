@@ -7,6 +7,7 @@ import { delay, tap } from 'rxjs/operators';
 })
 export class AuthService {
   loginUser$ = new BehaviorSubject(undefined);
+  redirectUrl:string;
 
   constructor() { }
   login(user): Observable<boolean> {
@@ -15,6 +16,7 @@ export class AuthService {
       tap(() => this.loginUser$.next(user))
     );
   }
+  
   logout(){
     this.loginUser$.next(undefined)
   }

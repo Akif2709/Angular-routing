@@ -6,11 +6,12 @@ import { PostsComponent } from './posts.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PostComponent } from './post/post.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
-import { CommentsResolver } from './post/resolvers/comments.resolver';
-import { PostsResolver } from './post/resolvers/posts.resolver';
+import { CommentsResolver } from './route-resolvers/comments.resolver';
+import { PostsResolver } from './route-resolvers/posts.resolver';
+import { PostsGuard } from './posts-guard/posts.guard';
 
 const routes: Routes = [
-  { path: '', component: PostsComponent, resolve:{posts: PostsResolver} },
+  { path: '', component: PostsComponent, resolve:{posts: PostsResolver}, canDeactivate:[PostsGuard] },
   { path: ':id', component: PostDetailsComponent, resolve: { postComments: CommentsResolver } },
 ];
 

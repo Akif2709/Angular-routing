@@ -11,8 +11,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 import { TodosComponent } from './shared-components/todos/todos.component';
 import { FormsModule } from '@angular/forms';
-import { SpinnerComponent } from './shared-components/spinner/spinner.component';
-import { UsersModule } from './users/users.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { SharedModule } from './shared-components/shared.module';
 
 const components = [
@@ -23,8 +23,7 @@ const components = [
 
 @NgModule({
   declarations: [...components],
-  imports: [BrowserModule, HttpClientModule, FormsModule, SharedModule, AppRoutingModule],
-  providers: [],
+  imports: [BrowserModule,BrowserAnimationsModule, HttpClientModule, FormsModule, SharedModule, AppRoutingModule],
   bootstrap: [AppComponent],
   exports: [],
 })

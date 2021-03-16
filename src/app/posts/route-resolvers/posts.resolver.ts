@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
-import {  Observable, of } from "rxjs";
-import { map } from "rxjs/operators";
-import { PostsService } from "../../posts.service";
+import { Resolve } from "@angular/router";
+import {  Observable } from "rxjs";
+import { PostsService } from "../posts.service";
 
 @Injectable({ providedIn: 'root' })
 export class PostsResolver implements Resolve<any> {

@@ -1,4 +1,4 @@
-<div class="container my-5"  >
+<div class="container my-5" style="z-index:10" >
     <div class="row" *ngIf="(todos$ | async) as todos; else notFound">
         <div class="col-md-12">
             <div class="p-1">
@@ -16,6 +16,7 @@
     <ng-template #notFound>
         <h5>No todo found..</h5>
     </ng-template>
+    <br/>
     <button (click)="closeTab()" class="btn btn-secondary">Close tab</button>
 </div>
     

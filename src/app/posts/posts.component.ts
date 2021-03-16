@@ -36,7 +36,8 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   addPost({ title, body }) {
     if (!this.loginUser) {
-      this.router.navigate(['/login'], { queryParams: { title, body, returnPath: '/posts' } });
+      this.authService.redirectUrl = this.router.url;
+      this.router.navigate(['/login'], { queryParams: { title, body } });
       return;
     }
 

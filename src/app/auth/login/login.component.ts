@@ -27,9 +27,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(user).subscribe((response) => {
       this.loading = false;
       if (response) {
-        const returnPath = this.route.snapshot.queryParams.returnPath
-        if(returnPath){
-          this.router.navigate([returnPath], {queryParamsHandling:'preserve'})
+        const redirectUrl = this.authService.redirectUrl
+        if(redirectUrl){
+          this.router.navigate([redirectUrl], { queryParamsHandling:'preserve' })
+          this.authService.redirectUrl = undefined
         }
       }
     });

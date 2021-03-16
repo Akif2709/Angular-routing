@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid row">
-  <div class="col m-1 ml-2">
-    <router-outlet></router-outlet>
+<div class="container-fluid row" [@slideInAnimation]="o.isActivated ? o.activatedRoute : '' ">
+  <div class="col m-1 ml-2" >
+    <router-outlet #o="outlet"></router-outlet>
   </div>
   <div [ngClass]="sidebar?.isActivated && 'col-3 shadow m-1 mr-0'">
     <router-outlet name="sidebar" #sidebar="outlet"></router-outlet>
