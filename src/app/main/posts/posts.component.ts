@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
-import { HttpService } from '../http-service.service';
 import { PostsService } from './posts.service';
 
 @Component({

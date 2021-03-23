@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { mergeMap, switchMap } from 'rxjs/operators';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/main/auth/auth.service';
 import { HttpService } from '../../http-service.service';
 
 @Component({

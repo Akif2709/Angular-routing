@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { HttpService } from '../../http-service.service';
+import { HttpService } from '../../../http-service.service';
 import { AuthService } from '../auth.service';
 
 @Component({

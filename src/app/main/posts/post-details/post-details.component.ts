@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, takeUntil, tap } from 'rxjs/operators';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/main/auth/auth.service';
 import { PostsService } from '../posts.service';
 
 @Component({
